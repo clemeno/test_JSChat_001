@@ -35,6 +35,6 @@ angular
   .factory('socket', function (socketFactory) {
     return socketFactory({
       prefix: '',
-      ioSocket: io.connect('192.168.1.16:8989')
+      ioSocket: io.connect('localhost:8989')
     });
   });
