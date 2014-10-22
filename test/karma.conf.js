@@ -21,6 +21,7 @@ module.exports = function(config) {
       'bower_components/jquery/dist/jquery.js',
       'bower_components/jquery-ui/ui/jquery-ui.js',
       'bower_components/bootstrap/dist/js/bootstrap.js',
+      'bower_components/socket.io-client/socket.io.js',
       'bower_components/angular/angular.js',
       'bower_components/angular-mocks/angular-mocks.js',
       'bower_components/angular-animate/angular-animate.js',
@@ -39,7 +40,7 @@ module.exports = function(config) {
     exclude: [],
 
     // web server port
-    port: 9898,
+    port: 8080,
 
     // Start these browsers, currently available:
     // - Chrome
