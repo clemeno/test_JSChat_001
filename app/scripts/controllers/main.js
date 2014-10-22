@@ -13,16 +13,16 @@ angular.module(	'testJschat001App'	)
 		$scope.messages	=	[];	//	message	=	{	_id:	MongoDBgeneratedID,	usename:	givenUsername,	message:	givenMessage	}
 
 		//	RECV part: control server events
-		socket.on(	'message:previousMessages',	function(	previousMessages	)	{
+		socket.on(	'previousMessages',	function(	previousMessages	)	{
 			previousMessages.forEach(	function(	previousMessage	)	{
 				$scope.messages.push(	previousMessage	);
 			});
 		});
 
-		socket.on(	'message:messageAdded',	function(	newMessage	)	{
+		socket.on(	'messageAdded',	function(	newMessage	)	{
 			$scope.messages.push(	newMessage	);
 		});	//	was on new message added
-		socket.on(	'message:messageDeleted',	function(	deletedMessage	)	{
+		socket.on(	'messageDeleted',	function(	deletedMessage	)	{
 			$scope.messages.splice(	deletedMessage.index,	1	);
 		});
 
@@ -33,14 +33,14 @@ angular.module(	'testJschat001App'	)
 				var	bEmptyUsername	=	(	!$scope.username	||	$scope.username.trim().length	===	0	);
 				if	(	!!bEmptyUsername	)	{	$scope.username	=	'John Bob';	}
 
-				socket.emit(	'message:addMessage',	{	username:	$scope.username,	message:	$scope.msg	}	);
+				socket.emit(	'addMessage',	{	username:	$scope.username,	message:	$scope.msg	}	);
 				$scope.msg	=	'';
 
 				if	(	!!bEmptyUsername	)	{	$scope.username	=	'';					}
 			}
 		};
 		$scope.removeMsg	=	function(	index,	id	)	{
-			socket.emit(	'message:deleteMessage',	{	index:	index,	_id:	id	}	);
+			socket.emit(	'deleteMessage',	{	index:	index,	_id:	id	}	);
 		};
 	}).filter(	'reverse',	function()	{
 		return function(	items	)	{
