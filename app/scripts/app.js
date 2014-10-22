@@ -15,7 +15,8 @@ angular
     'ngResource',
     'ngRoute',
     'ngSanitize',
-    'ngTouch'
+    'ngTouch',
+    'btford.socket-io'
   ])
   .config(function ($routeProvider) {
     $routeProvider
@@ -30,4 +31,10 @@ angular
       .otherwise({
         redirectTo: '/'
       });
+  })
+  .factory('socket', function (socketFactory) {
+    return socketFactory({
+      prefix: 'please:',
+      ioSocket: io.connect('192.168.1.16:8989')
+    });
   });
